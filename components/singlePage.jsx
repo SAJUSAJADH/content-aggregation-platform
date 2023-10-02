@@ -23,13 +23,13 @@ export default function SinglePage({params}){
         axios.post(`/api/singlepost`,{id}).then(({data})=>{
             setData(data)        
         })
-    },[])
+    })
 
     useEffect(()=>{
         axios.get('/api/data').then(({data})=>{
             setAllData(data)          
         })
-    },[])
+    })
 
     const Recommendations = () => {
         const recommendationItems = [];

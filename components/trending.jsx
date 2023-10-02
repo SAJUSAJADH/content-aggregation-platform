@@ -30,7 +30,7 @@ export default function Trending(){
         axios.get('/api/trend').then(({data})=>{
             setTrends(data[0])
         })
-    },[])
+    })
 
 
 
@@ -48,7 +48,7 @@ export default function Trending(){
         axios.get('/api/data').then(({data})=>{
             setData(data)           
         })
-    },[])
+    })
 
     
     const mappedTrends = Object.keys(trends).filter(key => key !== '_id' && key !== '__v').map(key => trends[key]);

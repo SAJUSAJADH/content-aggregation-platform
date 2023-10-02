@@ -22,7 +22,7 @@ export default function SearchResult({params}){
         axios.post('/api/search',{query}).then(({data})=>{
             setData(data)
         })
-    },[])
+    })
 
     
     const miniComponents = [];

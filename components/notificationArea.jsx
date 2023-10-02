@@ -13,7 +13,7 @@ export default function Notifiactions(){
         axios.get('/api/notify').then(({data})=>{
             setNotifications(data[0])
         })
-    },[])
+    })
     return(
         <>
             <div className="hidden md:block fixed top-16 right-16 z-50 bg-gray-900 rounded px-6 w-60 h-44 text-center py-2">

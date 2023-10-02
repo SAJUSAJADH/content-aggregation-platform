@@ -20,7 +20,7 @@ function Minipost({classes, width, height, head, count, isSummary}){
             
             
         })
-    },[])
+    })
 
 
 
