@@ -53,7 +53,7 @@ export default function Footer(){
                         TechnoObs: The Data Powerhouse 
                         </h2> 
                         <p className="text-white flex flex-wrap font-semibold font-sans text-sm">
-                        At TechnoObs, we're not just a tech company; we're your ultimate data partner. Our mission is simple: to empower your business with the data-driven insights you need to thrive in today's fast-paced digital landscape.    
+                        {"At TechnoObs, we're not just a tech company; we're your ultimate data partner. Our mission is simple: to empower your business with the data-driven insights you need to thrive in today's fast-paced digital landscape."}    
                         </p>   
                     </div>    
                     <div className="grid gap-4 ps-3 pe-4 border-r border-white">

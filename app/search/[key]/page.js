@@ -6,6 +6,7 @@ import axios from 'axios'
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import Link from "next/link";
+import ReactPlayer from "react-player";
 
 
 export default function SearchResult({params}){
