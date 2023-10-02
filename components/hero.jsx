@@ -15,7 +15,7 @@ export default function Hero(){
         axios.get('/api/data').then(({data})=>{
             setData(data)           
         })
-    })
+    },[])
 
     
 

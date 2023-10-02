@@ -34,7 +34,7 @@ export default function Categories({params}){
         axios.get('/api/trend').then(({data})=>{
             setTrends(data[0])
         })
-    })
+    },[])
 
     
 

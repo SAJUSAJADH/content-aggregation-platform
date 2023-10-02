@@ -13,7 +13,7 @@ export default function Slides({title}){
         axios.get('/api/data').then(({data})=>{
             setData(data)           
         })
-    })
+    },[])
 
     const minipostClass = "grid grid-cols-3 gap-4 pt-4 cursor-pointer";
     const postImageWidth = 300;

@@ -10,6 +10,7 @@ import parse from 'html-react-parser';
 
 
 
+
 export default function SinglePage({params}){
 
     const [Data, setData] = useState([])
@@ -23,13 +24,13 @@ export default function SinglePage({params}){
         axios.post(`/api/singlepost`,{id}).then(({data})=>{
             setData(data)        
         })
-    })
+    },[])
 
     useEffect(()=>{
         axios.get('/api/data').then(({data})=>{
             setAllData(data)          
         })
-    })
+    },[])
 
     const Recommendations = () => {
         const recommendationItems = [];
@@ -110,7 +111,7 @@ export default function SinglePage({params}){
                             {parse(`${Data?.content}`)}
                         </div>
                         <div className="py-2 border-b border-gray-400 md:w-3/4">
-                                <p className="text-black text-lg py-3 font-semibold">Editors' Recommendations</p>
+                                <p className="text-black text-lg py-3 font-semibold">{"Editors' Recommendations"}</p>
                                 <ul style={{listStyle: "disc", color: "blue"}}>
                                     {Recommendations()}
                                 </ul>
