@@ -17,7 +17,7 @@ export default function SearchResult({params}){
     
 
     
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(()=>{
         axios.post('/api/search',{query}).then(({data})=>{
             setData(data)

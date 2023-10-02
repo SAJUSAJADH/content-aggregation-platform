@@ -19,7 +19,7 @@ export default function SinglePage({params}){
     const [isImage, setIsImage] = useState(true)
     
 
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(()=>{
         axios.post(`/api/singlepost`,{id}).then(({data})=>{
             setData(data)        
