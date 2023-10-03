@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Notifiactions from "./notificationArea";
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import Toggler from "./toggleButton";
@@ -8,6 +8,7 @@ import SearchBar from './searchbar';
 import Menus from "./menu";
 import { Bell, Twitter } from 'lucide-react';
 import Link from "next/link";
+import axios from "axios";
 
 
 export default function Header(){
@@ -15,6 +16,15 @@ export default function Header(){
     const [isToggle, setIstoggle] = useState(false);
     const [search, setSearch] = useState(false);
     const [showNotifications, setShowNotifications] = useState(false);
+    const [notifications, setNotifications] = useState([])
+    let count = 0
+
+
+    useEffect(()=>{
+        axios.get('/api/notify').then(({data})=>{
+            setNotifications(data[0])
+        })
+    },[])
 
     const searching = ()=>{
         setSearch(!search)
@@ -34,6 +44,12 @@ export default function Header(){
         {name: "Crypto", href: "/category/Crypto"},
     ]
 
+    for (const key in notifications) {
+        if (notifications.hasOwnProperty(key) && key[0] !== "_" && notifications[key] !== "") {
+          count++
+        }
+      }
+
     return(
         <>
             <div className="w-full bg-[#000] fixed z-40 shadow-md">
@@ -48,7 +64,9 @@ export default function Header(){
                         ))}
                     </div>
                     <div className="flex gap-6">
-                        <span className="hidden lg:block mt-1 lg:mt-0 relative"><Bell onClick={()=>{setShowNotifications(!showNotifications)}} style={{color: "#fff", cursor: "pointer"}}/></span>
+                        <span className="hidden  mt-1 lg:mt-0 relative lg:inline-block"><Bell onClick={()=>{setShowNotifications(!showNotifications)}} style={{color: "#fff", cursor: "pointer"}}/>
+                            {count > 0 && <div className="notification-badge">{count}</div>}
+                        </span>
                         <h2 className="flex cursor-pointer text-white font-semibold text-xl"><Twitter style={{color: "skyblue", cursor: "pointer"}}/></h2>
                         <span className="hidden lg:flex px-1"><SearchOutlinedIcon onClick={searching} style={{color: "#0096FF", cursor: "pointer", fontSize: "x-large"}}/></span>
                     </div>

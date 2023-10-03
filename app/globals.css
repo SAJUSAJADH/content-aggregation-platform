@@ -44,3 +44,17 @@
   .open .hamburger-bottom{
     transform: rotate(-45deg) translateY(6px) translate(-6px);
   }
+
+  .notification-badge {
+    position: absolute;
+    top: -5px; /* Adjust the positioning as needed */
+    right: -5px; /* Adjust the positioning as needed */
+    background-color: red; /* Background color of the badge */
+    color: white; /* Text color of the badge */
+    border-radius: 50%; /* Makes it a rounded shape */
+    width: 20px; /* Adjust the width as needed */
+    height: 20px; /* Adjust the height as needed */
+    text-align: center;
+    line-height: 20px;
+    font-size: 12px; /* Adjust the font size as needed */
+  }

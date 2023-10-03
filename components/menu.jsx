@@ -1,4 +1,5 @@
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import Link from 'next/link';
 
 
 export default function Menus(){
@@ -8,11 +9,11 @@ export default function Menus(){
         {name: "Mobile", href: "/category/Mobile"},
         {name: "Gaming", href: "/category/Gaming"},
         {name: "Entertainment", href: "/category/Entertainment"},
-        {name: "Smart Home", href: "/"},
+        {name: "Sartups", href: "/category/Gaming"},
         {name: "Cars", href: "/category/Cars"},
-        {name: "Tech Gadgets", href: "/"},
+        {name: "Gadgets", href: "/category/Gaming"},
         {name: "Crypto", href: "/category/Crypto"},
-        {name: "More", href: "/"},
+        {name: "Deals", href: "/category/Gaming"},
         
     ]
 
@@ -22,12 +23,14 @@ export default function Menus(){
                 <div className="grid lg:grid-cols-3">
                     <div className="flex flex-col lg:border-r lg:border-gray-800">
                         {menus.map((menu,index)=>(
-                            <div key={index} className="py-4 lg:pe-4 px-3 lg:px-0 cursor-pointer flex justify-between">
+                            <Link href={menu.href}>
+                                <div key={index} className="py-4 lg:pe-4 px-3 lg:px-0 cursor-pointer flex justify-between">
                                 <h2 className="text-white font-semibold text-3xl font-serif">
                                     {menu.name}
                                 </h2>
                                 <span className="cursor-pointer"><ArrowForwardIosIcon style={{color: "#0096FF", fontSize: "larger"}}/></span>
                             </div>
+                            </Link>
                         ))}
                     </div>
                     <div className="col-span-2"></div>
