@@ -9,6 +9,7 @@ import Link from "next/link";
 import Header from "@/components/header";
 import Hero from "@/components/hero";
 import Footer from "@/components/footer";
+import { useRouter } from "next/navigation";
 
 
 
@@ -19,6 +20,7 @@ export default function Categories({params}){
     const [isImage, setIsImage] = useState(true)
     const [showControls, setShowControls] = useState(false);
     const [trends, setTrends] = useState([])
+    const router = useRouter()
 
     const handleMouseOver = () => {
         setShowControls(true);
@@ -51,7 +53,7 @@ export default function Categories({params}){
     })
 
     
-    
+    const mappedTrends = Object.keys(trends).filter(key => key !== '_id' && key !== '__v').map(key => trends[key]);
 
     
 
@@ -76,6 +78,19 @@ export default function Categories({params}){
 
     // if(FeaturedPost()[0] != undefined){console.log(FeaturedPost()[0].category)}
 
+    const Search = async (trend) => {
+        try{ 
+         const {data} = await axios.post('/api/search',{trend})
+         if(data.length > 0){
+             router.push(`/search/${trend}`)
+         }else{
+             router.push('/category/Gaming')
+         }
+         }catch(e){
+             console.log(e)
+         }
+     }
+
 
     return(
         <>
@@ -83,12 +98,13 @@ export default function Categories({params}){
              <div className="bg-sky-950 pt-28 w-full mx-auto py-5 px-4 lg:px-20">
                 <div className="flex justify-start flex-wrap gap-4 overflow-hidden">
                     <p className="font-semibold text-sm font-sans text-sky-600">Trending:</p>
-                    <p className="text-white font-semibold text-sm font-sans cursor-pointer hover:underline">{trends?.trend1}</p>
-                    <p className="text-white font-semibold text-sm font-sans cursor-pointer hover:underline">{trends?.trend2}</p>
-                    <p className="text-white font-semibold text-sm font-sans cursor-pointer hover:underline">{trends?.trend3}</p>
-                    <p className="text-white font-semibold text-sm font-sans cursor-pointer hover:underline">{trends?.trend4}</p>
-                    <p className="text-white font-semibold text-sm font-sans cursor-pointer hover:underline">{trends?.trend5}</p>
-                    <p className="text-white font-semibold text-sm font-sans cursor-pointer hover:underline">{trends?.trend6}</p>
+                    {
+                        mappedTrends.map((trend, index)=>(
+                            <p onClick={()=>{Search(trend)}} key={index} className="text-white font-semibold text-sm font-sans cursor-pointer hover:underline">
+                                {trend}
+                            </p>
+                        ))
+                    }
                 </div>
                 <div className="py-4 px-2 border-b border-gray-400">
                     <p className="text-sm font-bold font-sans"><span className="text-slate-400">
