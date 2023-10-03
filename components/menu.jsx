@@ -23,8 +23,8 @@ export default function Menus(){
                 <div className="grid lg:grid-cols-3">
                     <div className="flex flex-col lg:border-r lg:border-gray-800">
                         {menus.map((menu,index)=>(
-                            <Link href={menu.href}>
-                                <div key={index} className="py-4 lg:pe-4 px-3 lg:px-0 cursor-pointer flex justify-between">
+                            <Link key={index} href={menu.href}>
+                                <div className="py-4 lg:pe-4 px-3 lg:px-0 cursor-pointer flex justify-between">
                                 <h2 className="text-white font-semibold text-3xl font-serif">
                                     {menu.name}
                                 </h2>
