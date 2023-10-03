@@ -65,7 +65,7 @@ export default function Header(){
                     </div>
                     <div className="flex gap-6">
                         <span className="hidden  mt-1 lg:mt-0 relative lg:inline-block"><Bell onClick={()=>{setShowNotifications(!showNotifications)}} style={{color: "#fff", cursor: "pointer"}}/>
-                            {count > 0 && <div className="notification-badge">{count}</div>}
+                            {count > 0 && <div className="notification-badge cursor-pointer">{count}</div>}
                         </span>
                         <h2 className="flex cursor-pointer text-white font-semibold text-xl"><Twitter style={{color: "skyblue", cursor: "pointer"}}/></h2>
                         <span className="hidden lg:flex px-1"><SearchOutlinedIcon onClick={searching} style={{color: "#0096FF", cursor: "pointer", fontSize: "x-large"}}/></span>

@@ -12,6 +12,7 @@ export default function SearchBar(){
     const [query, setQuery] = useState('')
     const router = useRouter();
 
+
     const Search = async () => {
        try{ 
         const {data} = await axios.post('/api/search',{query})
@@ -25,6 +26,12 @@ export default function SearchBar(){
         }
     }
 
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            Search();
+        }
+    }
+
     
 
     return(
@@ -33,6 +40,7 @@ export default function SearchBar(){
                 <input
                 value={query}
                 onChange={(ev)=>{setQuery(ev.target.value)}}
+                onKeyDown={handleKeyDown}
                 type="text"
                 className="px-4 py-3 rounded bg-gray-100 text-lg italic focus:outline-none text-gray-950 border w-3/4"
                 placeholder="Search"
