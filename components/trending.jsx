@@ -27,7 +27,11 @@ export default function Trending(){
     
 
     useEffect(()=>{
-        axios.get('/api/trend').then(({data})=>{
+        axios.get('/api/trend',{
+            headers: {
+                'Cache-Control': 'no-store',
+              },
+        }).then(({data})=>{
             setTrends(data[0])
         })
     },[])

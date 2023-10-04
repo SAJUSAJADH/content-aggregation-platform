@@ -11,7 +11,11 @@ export default function Notifiactions(){
     const [notifications, setNotifications] = useState([])
 
     useEffect(()=>{
-        axios.get('/api/notify').then(({data})=>{
+        axios.get('/api/notify',{
+            headers: {
+                'Cache-Control': 'no-store',
+              },
+        }).then(({data})=>{
             setNotifications(data[0])
         })
     },[])
