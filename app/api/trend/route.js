@@ -5,8 +5,8 @@ import { NextResponse } from "next/server";
 Connect()
 
 
-export async function GET(req ,res){
-    try{
+export async function GET(req, res) {
+   try{
         const trends = await Trend.find()
         if(trends){
             const response = NextResponse.json(trends)

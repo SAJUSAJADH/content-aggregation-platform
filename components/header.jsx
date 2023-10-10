@@ -8,7 +8,7 @@ import SearchBar from './searchbar';
 import Menus from "./menu";
 import { Bell, Twitter } from 'lucide-react';
 import Link from "next/link";
-import axios from "axios";
+// import axios from "axios";
 
 
 export default function Header(){
@@ -21,9 +21,18 @@ export default function Header(){
 
 
     useEffect(()=>{
-        axios.get('/api/notify').then(({data})=>{
-            setNotifications(data[0])
-        })
+        fetch('/api/notify',{cache: 'no-store'}).then((response) => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          .then((data) => {
+            setNotifications(data[0]);
+          })
+          .catch((error) => {
+            console.error('Error fetching data:', error);
+          });
     },[])
 
     const searching = ()=>{

@@ -2,7 +2,7 @@
 
 import { Minipost } from "./miniPost";
 import { useEffect, useState } from "react"
-import axios from 'axios'
+// import axios from 'axios'
 
 
 export default function Slides({title}){
@@ -10,9 +10,18 @@ export default function Slides({title}){
     const [Data, setData] = useState([])
 
     useEffect(()=>{
-        axios.get('/api/data').then(({data})=>{
-            setData(data)           
-        })
+        fetch('/api/data', {cache: 'no-store'}).then((response) => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          .then((data) => {
+            setData(data);
+          })
+          .catch((error) => {
+            console.error('Error fetching data:', error);
+          });
     },[])
 
     const minipostClass = "grid grid-cols-3 gap-4 pt-4 cursor-pointer";

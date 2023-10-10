@@ -8,6 +8,7 @@ import ReactPlayer from "react-player";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
+
 export default function Trending(){
 
     const [Data, setData] = useState([])
@@ -27,13 +28,18 @@ export default function Trending(){
     
 
     useEffect(()=>{
-        axios.get('/api/trend',{
-            headers: {
-                'Cache-Control': 'no-store',
-              },
-        }).then(({data})=>{
-            setTrends(data[0])
-        })
+        fetch('/api/trend', {cache: 'no-store'}).then((response) => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          .then((data) => {
+            setTrends(data[0]);
+          })
+          .catch((error) => {
+            console.error('Error fetching data:', error);
+          });
     },[])
 
 
@@ -49,9 +55,18 @@ export default function Trending(){
     }
 
     useEffect(()=>{
-        axios.get('/api/data').then(({data})=>{
-            setData(data)           
-        })
+        fetch('/api/data', {cache: 'no-store'}).then((response) => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          .then((data) => {
+            setData(data);
+          })
+          .catch((error) => {
+            console.error('Error fetching data:', error);
+          });
     },[])
 
     
@@ -100,10 +115,10 @@ export default function Trending(){
                             <div>
                                 {isImage ?
                                     <img
-                                        className="z-10"
+                                        className="z-10 w-full"
                                         src={Data[Data.length-1].source} 
                                         alt="" 
-                                        width={650} 
+                                        // width={650} 
                                         height={500}
                                         onError={()=>{
                                             setIsImage(false)
