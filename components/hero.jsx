@@ -56,12 +56,12 @@ export default function Hero(){
                         <Slides title={"Mobile"}/>
                     </div>
                 </div>
-                <div className="flex justify-center">
+                {/* <div className="flex justify-center">
                     <button 
                         className="text-gray-800 bg-transparent hover:bg-slate-500 px-4 py-2 text-centerz z-20 shadow-xl font-bold rounded w-2/4">
                             view more
                     </button>
-                </div>
+                </div> */}
             </div>
         </>
     )
